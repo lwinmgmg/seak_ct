@@ -1,0 +1,21 @@
+
+name: Testing Pipeline(Python)
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    container: lwinmgmg/poetry:3.11.8-1.8.0
+    steps:
+    - name: Code Checkout
+      uses: actions/checkout@v4
+    - name: Installation
+      run: poetry install
+    - name: Testing
+      run: poetry run pytest
